@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Louve - create your art galleries!
 
-## Getting Started
+## Setup
 
-First, run the development server:
+In the project root folder, run `npm i` to install dependencies. Then, start the website by running `npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech desicions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- redux toolkit: while the app could have been done without a state management tool, it felt like RTK would provide a nice structure for data fetching. It's very consise and intuitive to use.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- tailwind: easy to get started with and great for a small project like this. I have not used it professionally and want to get to know it better.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- nextui: seems like a nice component library that works well in next with tailwind, never tried it before.
 
-## Learn More
+## Time spent
 
-To learn more about Next.js, take a look at the following resources:
+- RTK & API setup: 90min
+- component library research & setup: 30min
+- create gallery page implementation: 60min
+- crud + view galleries page: X
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Improvements/backlog
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### General
 
-## Deploy on Vercel
+- testing
+- image sizes, handle it smarter? like first loading thumbnails and then higher quality?
+- user feedback when creating gallery etc, no nice component for it in next ui unfortunately
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Search
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- pagination when searching for images
+- tags when searching for images
+- skeleton loading for better UX
+
+### Features
+
+- delete images in creation mode
+- prevent duplicate images in a gallery
+- edit galleries at later point, rm certain images etc
+-
