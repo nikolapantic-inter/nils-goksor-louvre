@@ -1,9 +1,5 @@
-import Link from "next/link";
+// TODO: fetch and display galleries
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Link href="create-gallery">create new gallery</Link>
-    </main>
-  );
+  return <div>my galleries</div>;
 }

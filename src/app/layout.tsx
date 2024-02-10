@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
+import Link from "next/link";
+import { Navbar, NavbarContent, NavbarItem } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +18,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <StoreProvider>
-        <body className={inter.className}>{children}</body>
-      </StoreProvider>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Navbar>
+            <NavbarContent>
+              <NavbarItem>
+                <Link href="/">My galleries</Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link href="/create-gallery">Create gallery</Link>
+              </NavbarItem>
+            </NavbarContent>
+          </Navbar>
+          <main className="m-4">{children}</main>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }
