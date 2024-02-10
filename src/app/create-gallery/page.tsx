@@ -1,5 +1,6 @@
 "use client";
 import { useGetPhotosQuery } from "@/api/apiSlice";
+import { getPhotoUrl } from "@/lib/util";
 import Image from "next/image";
 
 const CreateGallery = () => {
@@ -13,9 +14,7 @@ const CreateGallery = () => {
         <Image
           key={photo.id}
           alt={photo.title}
-          src={`https://live.staticflickr.com/${photo.server}/${photo.id}_${
-            photo.secret
-          }_${"t"}.jpg`}
+          src={getPhotoUrl({ photo, size: "s" })}
           width={150}
           height={150}
         />
