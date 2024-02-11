@@ -29,4 +29,8 @@ export const api = createApi({
   }),
 });
 
+export const {
+  useGetPhotosQuery,
+  useGetGalleriesQuery,
   useCreateGalleryMutation,
+} = api;
