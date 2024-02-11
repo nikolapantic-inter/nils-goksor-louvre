@@ -2,7 +2,7 @@
 
 ## Setup
 
-In the project root folder, run `npm i` to install dependencies. Then, start the website by running `npm run dev`
+In the project root folder, run `npm i` to install dependencies. Then, start the json db server needed to save/load galleries, `npx json-server --watch db.json --port 1337`. Lastly, start the website by running `npm run dev`
 
 ## Tech desicions
 
@@ -17,7 +17,7 @@ In the project root folder, run `npm i` to install dependencies. Then, start the
 - RTK & API setup: 90min
 - component library research & setup: 30min
 - create gallery page implementation: 60min
-- crud + view galleries page: X
+- crud + view galleries page: 60 min
 
 ## Improvements/backlog
 
@@ -38,4 +38,4 @@ In the project root folder, run `npm i` to install dependencies. Then, start the
 - delete images in creation mode
 - prevent duplicate images in a gallery
 - edit galleries at later point, rm certain images etc
--
+- select which photo in gallery that should be the gallery pic

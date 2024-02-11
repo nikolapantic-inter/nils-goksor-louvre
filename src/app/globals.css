@@ -8,11 +8,13 @@
   color: "#fff";
   background: -webkit-linear-gradient(to right, #0f2027, #203a43, #2c5364); 
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
 }
 
 body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: teal;
+    width: 100%;
+    max-width: 720px;
 }
 

@@ -1,5 +1,5 @@
 "use client";
-import { useGetPhotosQuery } from "@/api/apiSlice";
+import { useCreateGalleryMutation, useGetPhotosQuery } from "@/api/apiSlice";
 import { getPhotoUrl } from "@/lib/util";
 import {
   Input,
@@ -15,13 +15,19 @@ import { useState } from "react";
 import { PhotoI } from "@/lib/types/photo.interface";
 import { InspectPhotoModal } from "@/components/create-gallery/InspectPhotoModal";
 import { CreateGalleryModalModal } from "@/components/create-gallery/CreateGalleryModal";
+import { v4 as uuidv4 } from "uuid";
 
 const CreateGallery = () => {
-  const [searchTerm, setSearchTerm] = useState("maltese");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const { data, isLoading, isError } = useGetPhotosQuery(searchTerm, {
-    skip: searchTerm?.length < 3,
-  });
+  const { data, isLoading, isError, isFetching } = useGetPhotosQuery(
+    searchTerm,
+    {
+      skip: searchTerm?.length < 3,
+    }
+  );
+
+  const [createGallery, { data: galleryData }] = useCreateGalleryMutation();
 
   const [gallery, setGallery] = useState<PhotoI[]>([]);
 
@@ -37,10 +43,16 @@ const CreateGallery = () => {
   };
 
   const createGalleryHandler = (name: string) => {
+    createGallery({
+      gallery: {
+        id: uuidv4(),
+        name,
+        photos: gallery,
+      },
+    });
+
     setSelectedPhoto(undefined);
     setGallery([]);
-    console.log("create gallery", name, " w. # pictures: ", gallery?.length);
-    // TODO: Create gallery
     setCreatingGallery(false);
   };
 
@@ -69,7 +81,9 @@ const CreateGallery = () => {
         onCreate={createGalleryHandler}
       />
 
-      {isLoading && <Spinner />}
+      <div className="h-10 mb-4">
+        {(isLoading || isFetching) && <Spinner />}
+      </div>
       {isError && <p>Error!</p>}
 
       {gallery.length > 0 && (
@@ -93,7 +107,11 @@ const CreateGallery = () => {
         </div>
       )}
 
-      <div className="grid grid-rows-4 grid-flow-col gap-4">
+      {galleryData && gallery?.length === 0 && (
+        <p className="mb-4">Gallery created!</p>
+      )}
+
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {data?.photos?.photo?.map((photo) => (
           <Card
             key={photo.id}
