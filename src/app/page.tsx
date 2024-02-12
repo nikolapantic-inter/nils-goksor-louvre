@@ -1,5 +1,5 @@
 "use client";
-import { useGetGalleriesQuery } from "@/api/apiSlice";
+import { useDeleteGalleryMutation, useGetGalleriesQuery } from "@/api/apiSlice";
 import { GalleryI } from "@/lib/types/gallery.interface";
 import { getPhotoUrl } from "@/lib/util";
 import {
@@ -15,11 +15,16 @@ import { useState } from "react";
 export default function Home() {
   const { data: galleries, isLoading, isError } = useGetGalleriesQuery();
 
+  const [deleteGallery, { data: deletedGallery }] = useDeleteGalleryMutation();
+
   const [selectedGallery, setSelectedGallery] = useState<GalleryI | undefined>(
     undefined
   );
 
-  console.log({ galleries });
+  const onDeleteHandler = (id: string) => {
+    deleteGallery({ id });
+    setSelectedGallery(undefined);
+  };
 
   return (
     <>
@@ -28,6 +33,10 @@ export default function Home() {
       {!isError && !isLoading && (!galleries || galleries?.length < 1) && (
         <p>No galleries found</p>
       )}
+      {deletedGallery && !selectedGallery && (
+        <p className="mb-4">Gallery deleted!</p>
+      )}
+
       {!selectedGallery ? (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {galleries?.map((gallery) => (
@@ -61,8 +70,7 @@ export default function Home() {
                 className="ml-4"
                 color="danger"
                 variant="light"
-                onClick={() => setSelectedGallery(undefined)}
-                disabled
+                onClick={() => onDeleteHandler(selectedGallery.id)}
               >
                 Delete
               </Button>
