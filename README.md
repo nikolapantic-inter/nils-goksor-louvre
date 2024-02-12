@@ -12,18 +12,25 @@ In the project root folder, run `npm i` to install dependencies. Then, start the
 
 - nextui: seems like a nice component library that works well in next with tailwind, never tried it before.
 
+- jest: easy to setup and use
+
 ## Time spent
 
 - RTK & API setup: 90min
 - component library research & setup: 30min
 - create gallery page implementation: 60min
 - crud + view galleries page: 60 min
+- testing: 15 min
 
 ## Improvements/backlog
 
+### Bugs
+
+- why is NextUIProvider not required? And why could I not add it...
+
 ### General
 
-- testing
+- improved testing
 - image sizes, handle it smarter? like first loading thumbnails and then higher quality?
 - user feedback when creating gallery etc, no nice component for it in next ui unfortunately
 

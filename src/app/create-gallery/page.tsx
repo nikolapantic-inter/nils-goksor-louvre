@@ -66,13 +66,12 @@ const CreateGallery = () => {
         className="mb-4"
       />
 
-      {selectedPhoto && (
-        <InspectPhotoModal
-          photo={selectedPhoto}
-          onClose={() => setSelectedPhoto(undefined)}
-          onAdd={addPhotoHandler}
-        />
-      )}
+      <InspectPhotoModal
+        isOpen={selectedPhoto !== undefined}
+        photo={selectedPhoto}
+        onClose={() => setSelectedPhoto(undefined)}
+        onAdd={addPhotoHandler}
+      />
 
       <CreateGalleryModalModal
         photos={gallery}
@@ -84,6 +83,7 @@ const CreateGallery = () => {
       <div className="h-10 mb-4">
         {(isLoading || isFetching) && <Spinner />}
       </div>
+
       {isError && <p>Error!</p>}
 
       {gallery.length > 0 && (

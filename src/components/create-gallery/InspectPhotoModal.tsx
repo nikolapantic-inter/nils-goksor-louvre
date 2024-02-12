@@ -12,18 +12,20 @@ import { PhotoI } from "@/lib/types/photo.interface";
 import { getPhotoUrl } from "@/lib/util";
 
 interface InspectPhotoModalProps {
+  isOpen: boolean;
   photo?: PhotoI;
   onClose(): void;
   onAdd(): void;
 }
 export const InspectPhotoModal = ({
+  isOpen,
   photo,
   onClose,
   onAdd,
 }: InspectPhotoModalProps) => (
   <Modal
     backdrop="opaque"
-    isOpen={photo !== undefined}
+    isOpen={isOpen}
     onClose={onClose}
     classNames={{
       backdrop:
