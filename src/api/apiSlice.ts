@@ -55,10 +55,7 @@ export const api = createApi({
             undefined,
             (galleries: any) => {
               if (galleries) {
-                return [
-                  data,
-                  ...galleries.filter((g: GalleryI) => g.id !== arg.id),
-                ];
+                return [...galleries.filter((g: GalleryI) => g.id !== arg.id)];
               }
             }
           )
